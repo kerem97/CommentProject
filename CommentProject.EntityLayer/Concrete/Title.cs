@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace CommentProject.EntityLayer.Concrete
 {
-    public class Content
+    public class Title
     {
-        public int ContentID { get; set; }
-        public string ContentName { get; set; }
+        public int TitleID { get; set; }
+        public string TitleName { get; set; }
+
         public int CategoryID { get; set; }
         public Category Category { get; set; }
 

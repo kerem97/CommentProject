@@ -16,6 +16,6 @@ namespace CommentProject.EntityLayer.Concrete
 
         public List<Comment> Comments { get; set; }
 
-        public List<Content> Contents { get; set; }
+        public List<Title> Titles { get; set; }
     }
 }

@@ -1,7 +1,19 @@
+using CommentProject.BusinessLayer.Abstract;
+using CommentProject.BusinessLayer.Concrete;
+using CommentProject.DataAccessLayer.Abstract;
+using CommentProject.DataAccessLayer.EntityFramework;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
+builder.Services.AddScoped<ICategoryService, CategoryManager>();
+builder.Services.AddScoped<ICommentDal, EfCommentDal>();
+builder.Services.AddScoped<ICommentService, CommentManager>();
+builder.Services.AddScoped<ITitleDal, EfTitleDal>();
+builder.Services.AddScoped<ITitleService, TitleManager>();
+
 
 var app = builder.Build();
 

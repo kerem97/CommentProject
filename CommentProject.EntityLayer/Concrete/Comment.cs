@@ -15,11 +15,11 @@ namespace CommentProject.EntityLayer.Concrete
 
         public bool Status { get; set; }
 
-        public int ContentID { get; set; }
+        public int TitleID { get; set; }
 
-        public Content Content { get; set; }
+        public Title Title { get; set; }
 
-        public int AppUserID { get; set; }
+        public int? AppUserID { get; set; }
 
         public AppUser AppUser { get; set; }
 

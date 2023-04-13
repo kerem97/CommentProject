@@ -19,9 +19,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CommentProject.BusinessLayer\CommentProject.BusinessLayer.csproj" />
     <ProjectReference Include="..\CommentProject.DataAccessLayer\CommentProject.DataAccessLayer.csproj" />
     <ProjectReference Include="..\CommentProject.EntityLayer\CommentProject.EntityLayer.csproj" />
   </ItemGroup>
