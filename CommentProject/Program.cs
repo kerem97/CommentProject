@@ -1,7 +1,9 @@
 using CommentProject.BusinessLayer.Abstract;
 using CommentProject.BusinessLayer.Concrete;
 using CommentProject.DataAccessLayer.Abstract;
+using CommentProject.DataAccessLayer.Concrete;
 using CommentProject.DataAccessLayer.EntityFramework;
+using CommentProject.EntityLayer.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +15,8 @@ builder.Services.AddScoped<ICommentDal, EfCommentDal>();
 builder.Services.AddScoped<ICommentService, CommentManager>();
 builder.Services.AddScoped<ITitleDal, EfTitleDal>();
 builder.Services.AddScoped<ITitleService, TitleManager>();
-
+builder.Services.AddDbContext<Context>();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
 
 var app = builder.Build();
 

@@ -1,0 +1,14 @@
+﻿@model Title
+@{
+    Layout = null;
+}
+
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<br />
+<div class="container">
+    <form method="post">
+        @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.v)
+        <button class="btn btn-outline-success">Giriş</button>
+    </form>
+</div>
