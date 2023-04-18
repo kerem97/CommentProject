@@ -1,0 +1,37 @@
+﻿@model List<Comment>
+
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="tab-content">
+                                @foreach (var x in Model)
+                                {
+                                    <div class="timeline timeline-inverse">
+                                        <div>
+                                            <i class="fas fa-comments bg-warning"></i>
+                                            <div class="timeline-item">
+                                                <span class="time"><i class="far fa-clock"></i> @x.CommentDate</span>
+                                                <h3 class="timeline-header"><a href="#">Kerem Durak</a>bir yorum yaptı</h3>
+                                                <div class="timeline-body">
+                                                    @x.CommentDetails
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <i class="far fa-clock bg-gray"></i>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
