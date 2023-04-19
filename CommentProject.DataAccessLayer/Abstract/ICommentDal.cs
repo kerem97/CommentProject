@@ -11,5 +11,7 @@ namespace CommentProject.DataAccessLayer.Abstract
     {
         List<Comment> GetCommentsByTitle(int id);
         List<Comment> GetCommentsByTitleWithUser(int id);
+
+        List<Comment> GetCommentsByUserWithTitle(int id);
     }
 }

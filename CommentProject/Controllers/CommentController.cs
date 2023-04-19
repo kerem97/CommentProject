@@ -44,5 +44,14 @@ namespace CommentProject.Controllers
             _commentService.TInsert(comment);
             return RedirectToAction("Index", "Default");
         }
+
+        public async Task<IActionResult> MyComments()
+        {
+            var commentUserID = await _userManager.FindByNameAsync(User.Identity.Name);
+            var values = _commentService.TGetCommentsByUserWithTitle(commentUserID.Id);
+            return View(values);
+
+        }
+
     }
 }

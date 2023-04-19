@@ -11,6 +11,8 @@ namespace CommentProject.BusinessLayer.Abstract
     {
         List<Comment> TGetCommentsByTitle(int id);
         List<Comment> TGetCommentsByTitleWithUser(int id);
+        List<Comment> TGetCommentsByUserWithTitle(int id);
+
 
 
     }
