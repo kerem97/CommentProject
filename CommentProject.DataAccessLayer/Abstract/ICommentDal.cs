@@ -10,5 +10,6 @@ namespace CommentProject.DataAccessLayer.Abstract
     public interface ICommentDal : IGenericDal<Comment>
     {
         List<Comment> GetCommentsByTitle(int id);
+        List<Comment> GetCommentsByTitleWithUser(int id);
     }
 }

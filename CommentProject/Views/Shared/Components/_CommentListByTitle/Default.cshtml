@@ -15,8 +15,8 @@
                                         <div>
                                             <i class="fas fa-comments bg-warning"></i>
                                             <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> @x.CommentDate</span>
-                                                <h3 class="timeline-header"><a href="#">Kerem Durak</a>bir yorum yaptı</h3>
+                                                <span class="time"><i class="far fa-clock"></i>@(((DateTime)x.CommentDate).ToString("dd-MMM-yyyy"))</span>
+                                                <h3 class="timeline-header"><a href="#">@x.AppUser.Name @x.AppUser.Surname</a> Kategori:@x.Title.Category.CategoryName</h3>
                                                 <div class="timeline-body">
                                                     @x.CommentDetails
                                                 </div>
