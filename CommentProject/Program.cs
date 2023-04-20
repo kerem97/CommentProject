@@ -4,8 +4,17 @@ using CommentProject.DataAccessLayer.Abstract;
 using CommentProject.DataAccessLayer.Concrete;
 using CommentProject.DataAccessLayer.EntityFramework;
 using CommentProject.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity;
+using NLog.Web;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Logging.ClearProviders();
+builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+
+builder.Host.UseNLog();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -20,7 +29,24 @@ builder.Services.AddScoped<ICommentDal, EfCommentDal>();
 builder.Services.AddScoped<ICommentService, CommentManager>();
 
 builder.Services.AddDbContext<Context>();
-builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
+
+
+builder.Services.AddIdentity<AppUser, AppRole>(options =>
+{
+
+    options.Password.RequiredLength = 10;
+    options.Password.RequiredUniqueChars = 3;
+
+    options.SignIn.RequireConfirmedEmail = true;
+}).AddEntityFrameworkStores<Context>()
+  .AddDefaultTokenProviders();
+
+
+
+
+
+
+
 
 var app = builder.Build();
 

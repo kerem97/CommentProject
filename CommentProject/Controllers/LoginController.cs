@@ -2,6 +2,7 @@
 using CommentProject.Models.AppUserViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace CommentProject.Controllers
 {
@@ -27,7 +28,12 @@ namespace CommentProject.Controllers
             {
                 return RedirectToAction("Index", "Title");
             }
-            return View();
+            else
+            {
+                ModelState.AddModelError(" ", "Lütfen mail adresinizi onaylayınız");
+                return View();
+            }
+
         }
     }
 }

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommentProject.EntityLayer"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommentProject.DataAccessLayer", "CommentProject.DataAccessLayer\CommentProject.DataAccessLayer.csproj", "{0C18827B-2579-4EFD-A9D5-88D61FA74BD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentProject.BusinessLayer", "CommentProject.BusinessLayer\CommentProject.BusinessLayer.csproj", "{5A63221B-D77E-4031-9A10-5440E1ECFDED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommentProject.BusinessLayer", "CommentProject.BusinessLayer\CommentProject.BusinessLayer.csproj", "{5A63221B-D77E-4031-9A10-5440E1ECFDED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
