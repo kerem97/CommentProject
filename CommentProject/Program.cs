@@ -4,6 +4,7 @@ using CommentProject.DataAccessLayer.Abstract;
 using CommentProject.DataAccessLayer.Concrete;
 using CommentProject.DataAccessLayer.EntityFramework;
 using CommentProject.EntityLayer.Concrete;
+using CommentProject.Models.AppUserViewModels;
 using Microsoft.AspNetCore.Identity;
 using NLog.Web;
 

@@ -41,14 +41,25 @@ namespace CommentProject.Controllers
             };
             if (rvm.Password == rvm.ConfirmPassword)
             {
-                var result = await _userManager.CreateAsync(appUser, rvm.Password);
+                IdentityResult result = await _userManager.CreateAsync(appUser, rvm.Password);
                 if (result.Succeeded)
                 {
-                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
 
-                    var confirmationLink = Url.Action("ConfirmEmail", "Register",
-                        new { userId = appUser.Id, token = token }, Request.Scheme);
-                    _logger.Log(LogLevel.Warning, confirmationLink);
+
+                    string cftoken = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
+
+                    string link = Url.Action("ConfirmEmail", "Register", new
+
+                    {
+                        userId = appUser.Id,
+                        token = cftoken
+                    }, protocol: HttpContext.Request.Scheme
+
+                        );
+
+                    EmailConfirmation.SendEmail(link, appUser.Email);
+
+                    //_logger.Log(LogLevel.Warning, link);
 
                     return RedirectToAction("Index", "Login");
                 }
@@ -67,45 +78,65 @@ namespace CommentProject.Controllers
             return View();
         }
 
-        [HttpGet]
+        //[HttpGet]
+        //public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        //{
+        //    if (userId == null || token == null)
+        //    {
+        //        return RedirectToAction("Index", "Title");
+        //    }
+        //    var user = await _userManager.FindByIdAsync(userId);
+
+        //    if (user == null)
+        //    {
+        //        ViewBag.ErrorMessage($"User Id {userId} geçerli değil");
+        //        return RedirectToAction("NotFound");
+        //    }
+
+        //    var result = await _userManager.ConfirmEmailAsync(user, token);
+        //    if (result.Succeeded)
+        //    {
+        //        return RedirectToAction("ConfirmEmail", "Register");
+        //    }
+        //    ViewBag.ErrorTitle = "Mail doğrulanmadı";
+        //    return RedirectToAction("Error");
+
+
+
+
+        //}
+
+
+        //public IActionResult NotFound()
+        //{
+        //    return View();
+        //}
+
+        //public IActionResult Error()
+        //{
+        //    return View();
+        //}
+
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
-            if (userId == null || token == null)
-            {
-                return RedirectToAction("Index", "Title");
-            }
+
             var user = await _userManager.FindByIdAsync(userId);
 
-            if (user == null)
-            {
-                ViewBag.ErrorMessage($"User Id {userId} geçerli değil");
-                return RedirectToAction("NotFound");
-            }
 
-            var result = await _userManager.ConfirmEmailAsync(user, token);
+            IdentityResult result = await _userManager.ConfirmEmailAsync(user, token);
             if (result.Succeeded)
             {
-                return RedirectToAction("ConfirmEmail", "Register");
+                ViewBag.status = "Tebrikler artık giriş yapabilirsiniz";
             }
-            ViewBag.ErrorTitle = "Mail doğrulanmadı";
-            return RedirectToAction("Error");
+            else
+            {
+                ViewBag.status = "Bir hata meydana geldi";
+            }
 
-
-
-
-        }
-       
-
-        public IActionResult NotFound()
-        {
             return View();
-        }
 
-        public IActionResult Error()
-        {
-            return View();
-        }
 
+        }
 
     }
 }
